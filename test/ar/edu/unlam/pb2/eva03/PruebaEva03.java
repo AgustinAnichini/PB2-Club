@@ -46,8 +46,8 @@ public class PruebaEva03 {
 	
 	@Test
 	public void  queSePuedanIncorporarDistintosDeportistas() {
-		// El número de socio no se puede repetir
-		Club actual = new Club("CARP");
+		// El nï¿½mero de socio no se puede repetir
+		Club actual = new Club("CABJ");
 		
 		actual.agregarDeportista(new Corredor(1000, "Camila", 42000));
 		actual.agregarDeportista(new Corredor(1001, "Natalia", 5000));
@@ -66,7 +66,7 @@ public class PruebaEva03 {
 	
 	@Test (expected = NoEstaPreparado.class)
 	public void  queUnCorredorNoSePuedaInscribirEnUnaCarreraDeNatacion () throws NoEstaPreparado{	
-		// En las carreras de natación sólo pueden inscribirse los que sean INadador
+		// En las carreras de nataciï¿½n sï¿½lo pueden inscribirse los que sean INadador
 		Deportista celeste = new Corredor(1000, "Celeste", 10000);
 		Club actual = new Club("Sitas");
 		actual.agregarDeportista(celeste);
@@ -77,7 +77,7 @@ public class PruebaEva03 {
 	
 	@Test (expected = NoEstaPreparado.class)
 	public void  queUnCorredorNoSePuedaInscribirEnUnTriatlon () throws NoEstaPreparado{		
-		// En los triatlones sólo pueden inscribirse los que sean INadador & ICiclista
+		// En los triatlones sï¿½lo pueden inscribirse los que sean INadador & ICiclista
 		Deportista celeste = new Corredor(1000, "Celeste", 10000);
 		Club actual = new Club("Sitas");
 		
@@ -89,11 +89,15 @@ public class PruebaEva03 {
 	@Test
 	public void  queUnCorredorPuedaCorrerUnaMaraton() throws NoEstaPreparado{		
 		Deportista celeste = new Corredor(999, "Celeste", 42000);
+		Triatleta lautaro = new Triatleta(4, "Luna", "Olimpico", TipoDeBicicleta.TRIA);
+
 		Club actual = new Club("Moron");
 				
 		((Corredor)celeste).setCantidadDeKilometrosEntrenados(100000);
 		actual.crearEvento(TipoDeEvento.CARRERA_42K, "Maraton de New York");
 		
-		assertEquals((Integer)1, actual.inscribirEnEvento("Maraton de New York", celeste));			
+		assertEquals((Integer)1, actual.inscribirEnEvento("Maraton de New York", celeste));
+		assertEquals((Integer)2, actual.inscribirEnEvento("Maraton de New York", lautaro));
+
 	}
 }
